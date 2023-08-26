@@ -1,4 +1,8 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import {
+  createSlice,
+  createAsyncThunk,
+  createSelector,
+} from "@reduxjs/toolkit";
 import axios from "axios";
 import { CreditsProps, MovieListProps, MovieProps } from "../../types";
 import { RootState } from "..";
@@ -124,6 +128,7 @@ const moviesSlice = createSlice({
     builder.addCase(fetchMovieById.fulfilled, (state, action) => {
       state.status = "done";
       state.selectedMovie = action.payload;
+      // state.movies = state.movies.concat(action.payload);
     });
     builder.addCase(fetchMoviesByName.pending, (state) => {
       state.status = "loading";
@@ -137,13 +142,15 @@ const moviesSlice = createSlice({
 
 // Selectors
 export const selectAllMovies = (state: RootState) => state.movies;
-export const selectedMovie = (state: RootState) => {
-  return {
-    movie: state.movies.selectedMovie,
-    status: state.movies.status,
-  };
-};
-
+export const selectedMovie = createSelector(
+  [selectAllMovies],
+  ({ selectedMovie, status }) => {
+    return {
+      movie: selectedMovie,
+      status: status,
+    };
+  }
+);
 // Getters
 export const getMovieById = (state: RootState, movieId: number) => {
   return state.movies.movies.find((movie) => movie.id === movieId);
