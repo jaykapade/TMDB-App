@@ -1,12 +1,15 @@
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../store/hooks";
+
 import {
   clearSearchResults,
   fetchMovieById,
   selectedMovie,
 } from "../store/slices/movieSlice";
-import { useAppDispatch, useAppSelector } from "../store/hooks";
+
 import Spinner from "../components/Spinner";
+import DefaultImage from "../assets/icons/default-movie.svg";
 
 const Movie = () => {
   // const [movie, setMovie] = useState<MovieProps & CreditsProps>();
@@ -25,11 +28,14 @@ const Movie = () => {
   if (status === "loading") return <Spinner />;
   return (
     <section className="movie-section">
-      <img
-        src={`https://image.tmdb.org/t/p/w400/${movie?.poster_path}`}
-        alt="movie poster"
-        className="movie-poster"
-      />
+      {movie?.poster_path ? (
+        <img
+          src={`https://image.tmdb.org/t/p/w200/${movie.poster_path}`}
+          className="movie-poster"
+        />
+      ) : (
+        <img src={DefaultImage} alt="default-image" className="movie-poster" />
+      )}
       <div className="movie-info">
         <div className="movie-title">
           {movie?.original_title}{" "}

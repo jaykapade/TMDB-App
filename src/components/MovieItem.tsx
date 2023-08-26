@@ -9,7 +9,11 @@ type MovieItemProps = {
 
 const MovieItem = ({ movie }: MovieItemProps) => {
   return (
-    <Link to={`/movie/${movie.id}`} target="_blank" className="movie-item">
+    <Link
+      to={`/movie/${movie.id}`}
+      target={window.innerWidth > 768 ? "_blank" : "_self"}
+      className="movie-item"
+    >
       {movie.poster_path ? (
         <img
           src={`https://image.tmdb.org/t/p/w200/${movie.poster_path}`}
