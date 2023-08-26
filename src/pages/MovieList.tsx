@@ -4,6 +4,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { fetchMovies, selectAllMovies } from "../store/slices/movieSlice";
 import Spinner from "../components/Spinner";
+import Loading from "../components/Loading";
 
 const MovieList = () => {
   const { movies, status, page, totalMovies, searchedMovieResults } =
@@ -36,7 +37,7 @@ const MovieList = () => {
         dataLength={movies.length}
         next={() => dispatch(fetchMovies(page + 1))}
         hasMore={movies.length < totalMovies}
-        loader={"Loading..."}
+        loader={<Loading />}
         height={window.innerHeight - 64}
       >
         <div className="movies-list">
