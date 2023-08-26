@@ -38,3 +38,38 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 
 - Infinite scrolling search suggestions
 - Remove Single Movie Review page api calls if cast details and movie timings are available in a single api
+
+## Note
+
+- [Upcoming Api](https://developer.themoviedb.org/reference/movie-upcoming-list) doesn't have sort functionality. therefore not implemented as sorting in infinite scrolling is causing all data to get sorted.
+  -- Can use discover api to get data in sorted order. You can replace fetchMovies code with below code for future movies:
+
+  ```
+  // Fetch Movies Coming in next Month
+  export const fetchMovies = createAsyncThunk(
+  "movies/fetchMovies",
+  async (page: number) => {
+    const currentDate = new Date();
+    const currentDateString = currentDate.toISOString().split("T")[0];
+    // One Month ahead
+    const futureDate = new Date(
+      currentDate.setMonth(currentDate.getMonth() + 1)
+    );
+    const futureDateString = futureDate.toISOString().split("T")[0];
+
+    const response = await axiosBase.get<MovieListProps>(`/3/discover/movie`, {
+      params: {
+        api_key: import.meta.env.VITE_MOVIE_DB_TOKEN,
+        page: page,
+        "primary_release_date.gte": currentDateString,
+        "primary_release_date.lte": futureDateString,
+        sort_by: "primary_release_date.desc",
+        "vote_average.gte": 0,
+        "vote_average.lte": 10,
+        "vote_count.gte": 0,
+      },
+    });
+    return response?.data;
+  }
+  );
+  ```
