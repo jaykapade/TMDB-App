@@ -28,7 +28,7 @@ const initialState: InitialStateProps = {
 
 // Export for Future axios calls
 export const axiosBase = axios.create({
-  baseURL: "https://api.themoviedb.org",
+  baseURL: import.meta.env.VITE_MOVIE_DB_BASE_URL,
   headers: {
     "Content-type": "application/json",
   },
