@@ -37,16 +37,16 @@ const Movie = () => {
         <img src={DefaultImage} alt="default-image" className="movie-poster" />
       )}
       <div className="movie-info">
-        <div className="movie-title">
+        <h1 className="movie-title">
           {movie?.original_title}{" "}
           <span className="movie-rating">({movie?.vote_average})</span>
-        </div>
-        <div className="movie-subtitle">
+        </h1>
+        <h2 className="movie-subtitle">
           {movie?.release_date.split("-")[0]} | {movie?.runtime + "mins"} |{" "}
           {movie?.crew?.[0]?.name}
-        </div>
+        </h2>
         {/* //TODO loop and slice at 2 */}
-        <div className="movie-cast">
+        <h2 className="movie-cast">
           {movie?.cast.slice(0, 2).map((cast, index) => (
             <span key={`cast-${index}`}>
               {cast.name}
@@ -54,11 +54,11 @@ const Movie = () => {
             </span>
           ))}
           {movie && movie.cast.length > 2 && <span>...</span>}
-        </div>
-        <div className="movie-desc">
+        </h2>
+        <p className="movie-desc">
           <span>Description: &nbsp;</span>
           {movie?.overview}
-        </div>
+        </p>
       </div>
     </section>
   );

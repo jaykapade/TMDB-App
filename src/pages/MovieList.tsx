@@ -40,11 +40,11 @@ const MovieList = () => {
         loader={<Loading />}
         height={window.innerHeight - 64}
       >
-        <div className="movies-list">
+        <main className="movies-list">
           {movies.map((movie, index) => (
             <MovieItem movie={movie} key={index} />
           ))}
-        </div>
+        </main>
       </InfiniteScroll>
     </>
   );

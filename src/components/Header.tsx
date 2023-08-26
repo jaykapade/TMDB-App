@@ -37,12 +37,12 @@ const Header = () => {
 
   if (location?.pathname.includes("/movie"))
     return (
-      <div className="header">
+      <header className="header">
         <h1 className="header-title">Movie Details</h1>
         <Link to={"/"}>
           <img src={Home} className="home-icon" alt="home" />
         </Link>
-      </div>
+      </header>
     );
 
   return (
