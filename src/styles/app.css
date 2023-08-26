@@ -32,16 +32,16 @@
       margin-bottom: 8px;
       .movie-rating {
         font-weight: normal;
-        color: grey;
+        color: #dfdfdf;
       }
     }
     .movie-subtitle,
     .movie-cast {
       margin-bottom: 8px;
-      color: #585858;
+      color: #4a4a4a;
     }
     .movie-desc {
-      color: #585858;
+      color: #4a4a4a;
     }
     .movie-desc > span {
       font-weight: bold;
@@ -68,6 +68,39 @@
 }
 
 /* Components */
+/* Header */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  box-shadow: 0 4px 2px -2px rgba(0, 0, 0, 0.2);
+  .home-icon {
+    width: 24px;
+  }
+  .header-title {
+    font-size: 16px;
+    margin: 8px 0;
+  }
+  .header-input-container {
+    position: relative;
+    width: 30%;
+    .header-input {
+      border: none;
+      height: 40px;
+      background-color: #dfdfdf;
+      border-radius: 8px;
+      padding: 8px 8px 8px 32px;
+      width: 100%;
+    }
+    .search-icon {
+      position: absolute;
+      left: 8px;
+      top: 8px;
+      height: 20px;
+    }
+  }
+}
 /* Movie Item */
 .movie-item {
   overflow: hidden;
@@ -80,6 +113,12 @@
     height: 240px;
     object-fit: cover;
     display: block;
+  }
+  .movie-rating {
+    text-align: right;
+    margin: 4px;
+    color: #9b9b9b;
+    font-size: 12px;
   }
   .movie-name {
     margin: 8px;
@@ -122,14 +161,14 @@
 }
 .loader:before {
   animation: ball1 1s infinite;
-  background-color: #000000;
+  background-color: black;
   box-shadow: 30px 0 0 #ff3d00;
   margin-bottom: 10px;
 }
 .loader:after {
   animation: ball2 1s infinite;
   background-color: #ff3d00;
-  box-shadow: 30px 0 0 #000000;
+  box-shadow: 30px 0 0 black;
 }
 
 @keyframes rotate {
@@ -161,15 +200,15 @@
 
 @keyframes ball2 {
   0% {
-    box-shadow: 30px 0 0 #000000;
+    box-shadow: 30px 0 0 black;
   }
   50% {
-    box-shadow: 0 0 0 #000000;
+    box-shadow: 0 0 0 black;
     margin-top: -20px;
     transform: translate(15px, 15px);
   }
   100% {
-    box-shadow: 30px 0 0 #000000;
+    box-shadow: 30px 0 0 black;
     margin-top: 0;
   }
 }
